@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjjalwhnpom0s"]
+
+[ext_resource type="PackedScene" uid="uid://dddqxgry0fktg" path="res://scenes/RLUD.tscn" id="1_lbt7c"]
+
+[node name="main" type="Node2D"]
+
+[node name="RLUD" parent="." instance=ExtResource("1_lbt7c")]
+
+[editable path="RLUD"]

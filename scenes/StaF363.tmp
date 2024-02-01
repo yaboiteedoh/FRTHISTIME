@@ -1,0 +1,560 @@
+[gd_scene load_steps=22 format=3 uid="uid://dl8pbpv5k1th6"]
+
+[ext_resource type="PackedScene" uid="uid://cd3xuyl37kc6x" path="res://scenes/Rooms/U.tscn" id="1_enifp"]
+[ext_resource type="Texture2D" uid="uid://8ys26e6j6uwi" path="res://Assets/stage_tilemap.png" id="2_aj72o"]
+[ext_resource type="TileSet" uid="uid://dp36hkgjaivf6" path="res://Assets/Room Tileset.tres" id="2_cbalf"]
+[ext_resource type="PackedScene" uid="uid://bt2irwlb0044o" path="res://scenes/Rooms/RU.tscn" id="2_qv42a"]
+[ext_resource type="PackedScene" uid="uid://0np47joa3rmu" path="res://scenes/Rooms/UDR.tscn" id="3_04td7"]
+[ext_resource type="PackedScene" uid="uid://h4yeqa3iy2co" path="res://scenes/Rooms/UL.tscn" id="3_o6tab"]
+[ext_resource type="PackedScene" uid="uid://d4epc5nk4pr2r" path="res://scenes/Rooms/R.tscn" id="4_8mye2"]
+[ext_resource type="PackedScene" uid="uid://dltm60c41o3wh" path="res://scenes/Rooms/UD.tscn" id="4_v7kor"]
+[ext_resource type="PackedScene" uid="uid://b81aoa68muxfn" path="res://scenes/Rooms/DR.tscn" id="5_w1xgm"]
+[ext_resource type="PackedScene" uid="uid://c4e2e2aa12f6e" path="res://scenes/Rooms/DRL.tscn" id="6_cfkud"]
+[ext_resource type="PackedScene" uid="uid://bxogiuikpnhca" path="res://scenes/Rooms/RL.tscn" id="7_1r60d"]
+[ext_resource type="PackedScene" uid="uid://cdd53va7fdyuf" path="res://scenes/Rooms/D.tscn" id="8_a3jx3"]
+[ext_resource type="PackedScene" uid="uid://ds5ewlpjfpduy" path="res://scenes/Rooms/LD.tscn" id="9_20k6b"]
+[ext_resource type="PackedScene" uid="uid://dw01dmskjv8fn" path="res://scenes/Rooms/LUD.tscn" id="10_8kf1q"]
+[ext_resource type="PackedScene" uid="uid://dddqxgry0fktg" path="res://scenes/Rooms/RLUD.tscn" id="11_vttxp"]
+[ext_resource type="PackedScene" uid="uid://cvg67u78imywl" path="res://scenes/Rooms/L.tscn" id="12_ga7r1"]
+[ext_resource type="PackedScene" uid="uid://6qyhs4jh4x2y" path="res://scenes/Rooms/RLU.tscn" id="13_i7wne"]
+
+[sub_resource type="GDScript" id="GDScript_imqrh"]
+script/source = "#_____Header_____
+extends Node2D
+class_name Stage
+
+#_____Variants_____
+# Exit search shorthand
+var R = Vector2i(1,0)
+var L = Vector2i(-1,0)
+var D = Vector2i(0,1)
+var U = Vector2i(0,-1)
+var min_rooms = 15
+var rooms = []
+
+# Children
+@onready var tilemap = $TileMap
+@onready var full_tilemap = $Full_Tilemap
+
+# Dynamic Variants
+var used_cells : Array[Vector2i]
+var ends : Array[Vector2i]
+
+#_____Public Functions_____
+func update_used():
+	used_cells = tilemap.get_used_cells(0)
+	
+func set_root():
+	# Sets the used cell to a random cell matching type start
+	for i in used_cells:
+		var w = tilemap.get_by_data(\"Type\", \"Start\")
+		w.shuffle()
+		tilemap.set_cell(0, i, 0, w[0][\"Atlas_Coords\"])
+
+func expand_stage():
+	for i in used_cells:
+		var data = tilemap.get_cell_tile_data(0,i).get_custom_data(\"Data\")
+		var w = []
+		var sel = i
+		for x in data[\"Exits\"]:
+			if x:
+				if x == R:
+					sel.x -= L.x
+					sel.y -= L.y
+					w = tilemap.get_by_data(\"Exits\", [L])
+					w = tilemap.get_by_data(\"Type\", \"Combat\", w)
+				if x == L:
+					sel.x -= R.x
+					sel.y -= R.y
+					w = tilemap.get_by_data(\"Exits\", [R])
+					w = tilemap.get_by_data(\"Type\", \"Combat\", w)
+				if x == D:
+					sel.x -= U.x
+					sel.y -= U.y
+					w = tilemap.get_by_data(\"Exits\", [U])
+					w = tilemap.get_by_data(\"Type\", \"Combat\", w)
+				if x == U:
+					sel.x -= D.x
+					sel.y -= D.y
+					w = tilemap.get_by_data(\"Exits\", [D])
+					w = tilemap.get_by_data(\"Type\", \"Combat\", w)
+				w.shuffle()
+				if not used_cells.has(sel):
+					spawn_room(w, sel)
+				sel = i
+				w.clear()
+
+func spawn_room(w, sel):
+	var neighbors = tilemap.get_surrounding_cells(sel)
+	var e = []
+	for n in neighbors:
+		if used_cells.has(n):
+			var n_data = tilemap.get_cell_tile_data(0, n).get_custom_data(\"Data\")
+			var distance = Vector2i(sel.x - n.x, sel.y - n.y)
+			if n_data[\"Exits\"].has(-distance):
+				e.append(distance)
+	var connected = tilemap.get_by_data(\"Exits\", e, w)
+	connected.shuffle()
+	while connected[0][\"Atlas_Coords\"] == Vector2i(3,3):
+		connected.shuffle()
+	tilemap.set_cell(0, sel, 0, connected[0][\"Atlas_Coords\"])
+	update_used()
+
+func cap_ends():
+	for i in used_cells:
+		var neighbors = tilemap.get_surrounding_cells(i)
+		var e = []
+		var exits = [null, null, null, null]
+		for n in neighbors:
+			var distance = Vector2i(i.x - n.x, i.y - n.y)
+			if used_cells.has(n):
+				var n_data = tilemap.get_cell_tile_data(0, n).get_custom_data(\"Data\")
+				for x in n_data[\"Exits\"]:
+					if x == distance:
+						e.append(Vector2i(distance*Vector2i(-1,-1)))
+		for exit in e:
+			if exit == R:
+				exits[0] = R
+			if exit == L:
+				exits[1] = L
+			if exit == D:
+				exits[2] = D
+			if exit == U:
+				exits[3] = U
+		tilemap.set_cell(0,i,0,tilemap.get_by_data(\"Exits\", exits)[0][\"Atlas_Coords\"])
+
+func generate_stage():
+	update_used()
+	for i in used_cells:
+		tilemap.set_cell(0,i,-1)
+	tilemap.set_cell(0,Vector2i(0,0),0,Vector2i(3,3))
+	set_root()
+	while used_cells.size() < min_rooms:
+		var prev = used_cells.size()
+		expand_stage()
+		var new = used_cells.size()
+		if prev == new:
+			generate_stage()
+	cap_ends()
+	find_ends()
+	set_specials()
+
+func find_ends():
+	for i in used_cells:
+		var data = tilemap.get_cell_tile_data(0, i).get_custom_data(\"Data\")
+		var clean = []
+		for x in data[\"Exits\"]:
+			if x:
+				clean.append(x)
+		if clean.size() == 1:
+			ends.append(i)
+			
+func set_specials():
+	var Starts = tilemap.get_by_data(\"Type\", \"Start\")
+	var Items = tilemap.get_by_data(\"Type\", \"Item\")
+	var Bosses = tilemap.get_by_data(\"Type\", \"Boss\")
+	used_cells.shuffle()
+	if ends.has(used_cells[0]):
+		ends.erase(used_cells[0])
+	tilemap.set_cell(0,used_cells[0],0,tilemap.get_by_data(\"Exits\", tilemap.get_cell_tile_data(0,used_cells[0]).get_custom_data(\"Data\")[\"Exits\"], Starts)[0][\"Atlas_Coords\"])
+	tilemap.set_cell(0,ends[0],0,tilemap.get_by_data(\"Exits\", tilemap.get_cell_tile_data(0,ends[0]).get_custom_data(\"Data\")[\"Exits\"], Items)[0][\"Atlas_Coords\"])
+	ends.erase(ends[0])
+	ends.shuffle()
+	tilemap.set_cell(0,ends[0],0,tilemap.get_by_data(\"Exits\", tilemap.get_cell_tile_data(0,ends[0]).get_custom_data(\"Data\")[\"Exits\"], Bosses)[0][\"Atlas_Coords\"])
+
+func place_rooms():
+	for i in used_cells:
+		var room = tilemap.get_cell_tile_data(0,i).get_custom_data(\"Data\")[\"Room\"].instantiate()
+		var i_position = Vector2(tilemap.map_to_local(i))
+		room.set_position(i_position)
+		add_child(room)
+		rooms.append(room)
+
+func consolidate_tiles():
+	for room in rooms:
+		var room_tilemap = room.get_child(0)
+		for i in room_tilemap.get_used_cells(0):
+			var i_global = to_global(room_tilemap.map_to_local(i))
+			print(to_local(to_global(room_tilemap.map_to_local(i))))
+			#full_tilemap.set_cell(0, full_tilemap.local_to_map(to_local(i_global)), 0, room_tilemap.get_cell_atlas_coords(0, i))
+
+#_____Private Functions_____
+func _ready():
+	generate_stage()
+	place_rooms()
+	consolidate_tiles()
+"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eiagf"]
+texture = ExtResource("2_aj72o")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(3, 3)
+0:0/0 = 0
+0:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 0),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Room": ExtResource("1_enifp"),
+"Type": "Combat"
+}
+1:0/0 = 0
+1:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 0),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Room": ExtResource("4_8mye2"),
+"Type": "Combat"
+}
+2:0/0 = 0
+2:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 0),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Room": ExtResource("8_a3jx3"),
+"Type": "Combat"
+}
+3:0/0 = 0
+3:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 0),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Room": ExtResource("12_ga7r1"),
+"Type": "Combat"
+}
+3:1/0 = 0
+3:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 1),
+"Exits": [null, Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Room": ExtResource("3_o6tab"),
+"Type": "Combat"
+}
+3:2/0 = 0
+3:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 2),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Room": ExtResource("13_i7wne"),
+"Type": "Combat"
+}
+3:3/0 = 0
+3:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 3),
+"Exits": [null, null, null, null],
+"Room": null,
+"Type": "Init"
+}
+2:3/0 = 0
+2:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 3),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("11_vttxp"),
+"Type": "Combat"
+}
+1:3/0 = 0
+1:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 3),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, null],
+"Room": ExtResource("7_1r60d"),
+"Type": "Combat"
+}
+0:3/0 = 0
+0:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 3),
+"Exits": [null, null, Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("4_v7kor"),
+"Type": "Combat"
+}
+0:2/0 = 0
+0:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 2),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("3_04td7"),
+"Type": "Combat"
+}
+0:1/0 = 0
+0:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 1),
+"Exits": [Vector2i(1, 0), null, null, Vector2i(0, -1)],
+"Room": ExtResource("2_qv42a"),
+"Type": "Combat"
+}
+1:1/0 = 0
+1:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 1),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), null],
+"Room": ExtResource("5_w1xgm"),
+"Type": "Combat"
+}
+2:1/0 = 0
+2:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 1),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), null],
+"Room": ExtResource("9_20k6b"),
+"Type": "Combat"
+}
+2:2/0 = 0
+2:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 2),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("10_8kf1q"),
+"Type": "Combat"
+}
+1:2/0 = 0
+1:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 2),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), null],
+"Room": ExtResource("6_cfkud"),
+"Type": "Combat"
+}
+0:4/0 = 0
+0:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 4),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Room": ExtResource("1_enifp"),
+"Type": "Start"
+}
+1:4/0 = 0
+1:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 4),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Room": ExtResource("4_8mye2"),
+"Type": "Start"
+}
+2:4/0 = 0
+2:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 4),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Room": ExtResource("8_a3jx3"),
+"Type": "Start"
+}
+3:4/0 = 0
+3:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 4),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Room": ExtResource("12_ga7r1"),
+"Type": "Start"
+}
+3:5/0 = 0
+3:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 5),
+"Exits": [null, Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Room": ExtResource("3_o6tab"),
+"Type": "Start"
+}
+3:6/0 = 0
+3:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 6),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Room": ExtResource("13_i7wne"),
+"Type": "Start"
+}
+2:6/0 = 0
+2:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 6),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("10_8kf1q"),
+"Type": "Start"
+}
+1:6/0 = 0
+1:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 6),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), null],
+"Room": ExtResource("6_cfkud"),
+"Type": "Start"
+}
+0:6/0 = 0
+0:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 6),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("3_04td7"),
+"Type": "Start"
+}
+0:5/0 = 0
+0:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 5),
+"Exits": [Vector2i(1, 0), null, null, Vector2i(0, -1)],
+"Room": ExtResource("2_qv42a"),
+"Type": "Start"
+}
+1:5/0 = 0
+1:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 5),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), null],
+"Room": ExtResource("5_w1xgm"),
+"Type": "Start"
+}
+2:5/0 = 0
+2:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 5),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), null],
+"Room": ExtResource("9_20k6b"),
+"Type": "Start"
+}
+2:7/0 = 0
+2:7/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 7),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("11_vttxp"),
+"Type": "Start"
+}
+1:7/0 = 0
+1:7/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 7),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, null],
+"Room": ExtResource("7_1r60d"),
+"Type": "Start"
+}
+0:7/0 = 0
+0:7/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 7),
+"Exits": [null, null, Vector2i(0, 1), Vector2i(0, -1)],
+"Room": ExtResource("4_v7kor"),
+"Type": "Start"
+}
+0:8/0 = 0
+0:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 8),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Room": ExtResource("1_enifp"),
+"Type": "Item"
+}
+1:8/0 = 0
+1:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 8),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Room": ExtResource("4_8mye2"),
+"Type": "Item"
+}
+2:8/0 = 0
+2:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 8),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Room": ExtResource("8_a3jx3"),
+"Type": "Item"
+}
+3:8/0 = 0
+3:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 8),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Room": ExtResource("12_ga7r1"),
+"Type": "Item"
+}
+3:12/0 = 0
+3:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 12),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Room": ExtResource("12_ga7r1"),
+"Type": "Boss"
+}
+2:12/0 = 0
+2:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 12),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Room": ExtResource("8_a3jx3"),
+"Type": "Boss"
+}
+1:12/0 = 0
+1:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 12),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Room": ExtResource("4_8mye2"),
+"Type": "Boss"
+}
+0:12/0 = 0
+0:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 12),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Room": ExtResource("1_enifp"),
+"Type": "Boss"
+}
+
+[sub_resource type="TileSet" id="TileSet_y8x00"]
+tile_size = Vector2i(152, 152)
+custom_data_layer_0/name = "Data"
+custom_data_layer_0/type = 27
+sources/0 = SubResource("TileSetAtlasSource_eiagf")
+
+[sub_resource type="GDScript" id="GDScript_xw1cl"]
+script/source = "#_____Header_____
+extends TileMap
+class_name Stage_tilemap
+
+#_____Variants_____
+var source : TileSetAtlasSource
+var Tiles_Data = []
+
+#_____Public Functions_____
+func get_by_data(d_path : String, value, arr : Array = Tiles_Data):
+	\"\"\"
+		@ returns a filtered Array[{
+			\"Atlas_Coords\": Vector2i(Atlas Coords),
+			\"Exits\": [exit directions/distances],
+			\"Rooms\":[Valid Room Scenes],
+			\"Type\": Room Type
+		  }]
+		
+		!! IF YOU ARE SEARCHING BY THE DIRECTION IT NEEDS TO BE AN ARRAY
+		
+		clone the tile_data array to working array
+		instantiate an erase array
+			Check that the query isn't for exits
+				iterate through items in working array
+					if the data query doesn't exist in that item's custom data
+						add item to the erase array
+			if it is for exits
+				for each direction in the query
+					for each item in the working array
+						if the data query isn't in the directional array
+							add the item to the erase array
+			for each item in the erase array
+				delete that item from the working array
+		return the filtered array
+	\"\"\"
+	var w = arr.duplicate()
+	var e = []
+	if not d_path == \"Exits\":
+		for i in w:
+			if not i[d_path] == value:
+				e.append(i)
+	elif d_path == \"Exits\":
+		if value.size() <= 3:
+			for i in value:
+				for x in w:
+					if not x[d_path].has(i):
+						e.append(x)
+		else:
+			for x in w:
+				if not x[d_path] == value:
+					e.append(x)
+	for i in w:
+		if i[\"Atlas_Coords\"] == Vector2i(3,3):
+			e.append(i)
+	for i in e:
+		w.erase(i)
+	return w
+
+func update_Tile_Data():
+	\"\"\"
+		@ returns void
+		
+		clears the tile_data array
+		updates tile_data array with custom tile data for each
+		tile in the current tileset source (0)
+	\"\"\"
+	Tiles_Data.clear()
+	source = get_tileset().get_source(0)
+	for i in source.get_tiles_count():
+		Tiles_Data.append(source.get_tile_data(source.get_tile_id(i), 0).get_custom_data(\"Data\"))
+
+#_____Private Functions_____
+func _ready():
+	update_Tile_Data()
+"
+
+[node name="Stage" type="Node2D"]
+script = SubResource("GDScript_imqrh")
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = SubResource("TileSet_y8x00")
+format = 2
+script = SubResource("GDScript_xw1cl")
+
+[node name="Full_Tilemap" type="TileMap" parent="."]
+tile_set = ExtResource("2_cbalf")
+format = 2

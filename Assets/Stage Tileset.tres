@@ -1,0 +1,315 @@
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://ctrryn5ht0v3c"]
+
+[ext_resource type="PackedScene" uid="uid://c8q1fsdm4oqh2" path="res://room1.tscn" id="1_promn"]
+[ext_resource type="PackedScene" uid="uid://fbxbxoyrt7sf" path="res://room2.tscn" id="2_ast4n"]
+[ext_resource type="PackedScene" uid="uid://7b7frw3wqihm" path="res://room3.tscn" id="3_40xun"]
+[ext_resource type="Texture2D" uid="uid://drspqmm7fcog" path="res://pixilart-drawing.png" id="4_jb6x7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xg8xe"]
+texture = ExtResource("4_jb6x7")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(3, 3)
+0:0/0 = 0
+3:3/0 = 0
+3:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jus0s"]
+tile_size = Vector2i(3, 3)
+sources/0 = SubResource("TileSetAtlasSource_xg8xe")
+
+[sub_resource type="PackedScene" id="PackedScene_27fvj"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Node2D", "Node2D", "TileMap", "TileMap", "tile_set", "format", "layer_0/tile_data"),
+"node_count": 2,
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 1073741824, 0, 3, 2, -1, 3, 4, 0, 5, 1, 6, 2, 0),
+"variants": [SubResource("TileSet_jus0s"), 2, PackedInt32Array(196609, 196608, 3, 262142, 196608, 3, -196610, 196608, 3, -262143, 196608, 3, -262142, 196608, 3, 196610, 196608, 3, 262141, 196608, 3, -196611, 196608, 3, -262141, 196608, 3, 196611, 196608, 3, 262140, 196608, 3, -196612, 196608, 3, -131076, 196608, 3, -65540, 196608, 3, 131068, 196608, 3, 196604, 196608, 3, 131075, 196608, 3, 65539, 196608, 3, -131069, 196608, 3, -196605, 196608, 3, -196609, 196608, 3, -262144, 196608, 3, 3, 196608, 3, -65533, 196608, 3, 196608, 196608, 3, 262143, 196608, 3)],
+"version": 3
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2vlgo"]
+texture = ExtResource("4_jb6x7")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(3, 3)
+0:1/0 = 0
+0:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 1),
+"Exits": [Vector2i(1, 0), null, null, Vector2i(0, -1)],
+"Rooms": ["res://room5.tscn"],
+"Type": "Combat"
+}
+0:2/0 = 0
+0:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 2),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room9.tscn"],
+"Type": "Combat"
+}
+2:1/0 = 0
+2:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 1),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), null],
+"Rooms": ["res://room7.tscn"],
+"Type": "Combat"
+}
+1:1/0 = 0
+1:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 1),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), null],
+"Rooms": ["res://room6.tscn"],
+"Type": "Combat"
+}
+1:0/0 = 0
+1:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 0),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Rooms": [ExtResource("2_ast4n")],
+"Type": "Combat"
+}
+2:0/0 = 0
+2:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 0),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Rooms": [ExtResource("3_40xun")],
+"Type": "Combat"
+}
+3:0/0 = 0
+3:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 0),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Rooms": [SubResource("PackedScene_27fvj")],
+"Type": "Combat"
+}
+3:1/0 = 0
+3:1/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 1),
+"Exits": [null, Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Rooms": ["res://room8.tscn"],
+"Type": "Combat"
+}
+3:2/0 = 0
+3:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 2),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Rooms": ["res://room12.tscn"],
+"Type": "Combat"
+}
+1:2/0 = 0
+1:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 2),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), null],
+"Rooms": ["res://room10.tscn"],
+"Type": "Combat"
+}
+2:2/0 = 0
+2:2/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 2),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room11.tscn"],
+"Type": "Combat"
+}
+2:3/0 = 0
+2:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 3),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room15.tscn"],
+"Type": "Combat"
+}
+1:3/0 = 0
+1:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 3),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, null],
+"Rooms": ["res://room14.tscn"],
+"Type": "Combat"
+}
+0:3/0 = 0
+0:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 3),
+"Exits": [null, null, Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room13.tscn"],
+"Type": "Combat"
+}
+3:3/0 = 0
+3:3/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 3),
+"Exits": [null, null, null, null],
+"Rooms": [],
+"Type": "Init"
+}
+3:4/0 = 0
+3:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 4),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Rooms": [SubResource("PackedScene_27fvj")],
+"Type": "Start"
+}
+2:4/0 = 0
+2:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 4),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Rooms": [ExtResource("3_40xun")],
+"Type": "Start"
+}
+1:4/0 = 0
+1:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 4),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Rooms": [ExtResource("2_ast4n")],
+"Type": "Start"
+}
+0:8/0 = 0
+0:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 8),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Rooms": [ExtResource("1_promn")],
+"Type": "Item"
+}
+1:8/0 = 0
+1:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 8),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Rooms": [ExtResource("2_ast4n")],
+"Type": "Item"
+}
+2:8/0 = 0
+2:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 8),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Rooms": [ExtResource("3_40xun")],
+"Type": "Item"
+}
+3:8/0 = 0
+3:8/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 8),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Rooms": [SubResource("PackedScene_27fvj")],
+"Type": "Item"
+}
+3:12/0 = 0
+3:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 12),
+"Exits": [null, Vector2i(-1, 0), null, null],
+"Rooms": [SubResource("PackedScene_27fvj")],
+"Type": "Boss"
+}
+2:12/0 = 0
+2:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 12),
+"Exits": [null, null, Vector2i(0, 1), null],
+"Rooms": [ExtResource("3_40xun")],
+"Type": "Boss"
+}
+1:12/0 = 0
+1:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 12),
+"Exits": [Vector2i(1, 0), null, null, null],
+"Rooms": [ExtResource("2_ast4n")],
+"Type": "Boss"
+}
+0:12/0 = 0
+0:12/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 12),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Rooms": [ExtResource("1_promn"), null],
+"Type": "Boss"
+}
+0:7/0 = 0
+0:7/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 7),
+"Exits": [null, null, Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room13.tscn"],
+"Type": "Start"
+}
+1:7/0 = 0
+1:7/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 7),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, null],
+"Rooms": ["res://room14.tscn"],
+"Type": "Start"
+}
+2:7/0 = 0
+2:7/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 7),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room15.tscn"],
+"Type": "Start"
+}
+3:6/0 = 0
+3:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 6),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Rooms": ["res://room12.tscn"],
+"Type": "Start"
+}
+2:6/0 = 0
+2:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 6),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room11.tscn"],
+"Type": "Start"
+}
+1:6/0 = 0
+1:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 6),
+"Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), null],
+"Rooms": ["res://room10.tscn"],
+"Type": "Start"
+}
+0:6/0 = 0
+0:6/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 6),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), Vector2i(0, -1)],
+"Rooms": ["res://room9.tscn"],
+"Type": "Start"
+}
+0:5/0 = 0
+0:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 5),
+"Exits": [Vector2i(1, 0), null, null, Vector2i(0, -1)],
+"Rooms": ["res://room5.tscn"],
+"Type": "Start"
+}
+1:5/0 = 0
+1:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(1, 5),
+"Exits": [Vector2i(1, 0), null, Vector2i(0, 1), null],
+"Rooms": ["res://room6.tscn"],
+"Type": "Start"
+}
+2:5/0 = 0
+2:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(2, 5),
+"Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), null],
+"Rooms": ["res://room7.tscn"],
+"Type": "Start"
+}
+3:5/0 = 0
+3:5/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(3, 5),
+"Exits": [null, Vector2i(-1, 0), null, Vector2i(0, -1)],
+"Rooms": ["res://room8.tscn"],
+"Type": "Start"
+}
+0:0/0 = 0
+0:0/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 0),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Rooms": [ExtResource("1_promn")],
+"Type": "Combat"
+}
+0:4/0 = 0
+0:4/0/custom_data_0 = {
+"Atlas_Coords": Vector2i(0, 4),
+"Exits": [null, null, null, Vector2i(0, -1)],
+"Rooms": [ExtResource("1_promn")],
+"Type": "Start"
+}
+
+[resource]
+tile_size = Vector2i(24, 24)
+custom_data_layer_0/name = "Data"
+custom_data_layer_0/type = 27
+sources/0 = SubResource("TileSetAtlasSource_2vlgo")
