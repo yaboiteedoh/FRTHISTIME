@@ -136,7 +136,7 @@ func place_floor():
 	for x in 10:
 		if get_cell_tile_data(0,Vector2i((x*-1),1)).get_custom_data("tile_type") == "air":
 			set_cell(0,Vector2i(x*-1,1), 0, Vector2i(5,5))
-			
+	"""		
 	if get_cell_tile_data(0,Vector2i(9,0)).get_custom_data("tile_type") != "contact":
 		set_cell(0,Vector2i(9,0), 0, Vector2i(5,4))
 	if get_cell_tile_data(0,Vector2i(9,-1)).get_custom_data("tile_type") != "contact":
@@ -153,3 +153,4 @@ func place_floor():
 		set_cell(0,Vector2i(0,-10), 0, Vector2i(5,4))
 	if get_cell_tile_data(0,Vector2i(-1,-10)).get_custom_data("tile_type") != "contact":
 		set_cell(0,Vector2i(-1,-10), 0, Vector2i(5,4))
+	"""
