@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Resources/Room.gd" id="1_q54cq"]
 [ext_resource type="TileSet" uid="uid://dp36hkgjaivf6" path="res://Assets/Room Tileset.tres" id="2_h18m1"]
 [ext_resource type="Script" path="res://Scripts/RLUD.gd" id="3_8bxrc"]
-[ext_resource type="PackedScene" uid="uid://bhqg4o7q3v8dw" path="res://scenes/Entities/player.tscn" id="4_puc4q"]
+[ext_resource type="PackedScene" uid="uid://bhqg4o7q3v8dw" path="res://scenes/Entities/Player/player.tscn" id="4_puc4q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0mpj"]
 size = Vector2(152, 152)
