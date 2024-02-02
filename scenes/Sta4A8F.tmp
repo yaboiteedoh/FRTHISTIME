@@ -1,37 +1,37 @@
 [gd_scene load_steps=37 format=3 uid="uid://dl8pbpv5k1th6"]
 
-[ext_resource type="PackedScene" uid="uid://bk13ac7hjx2nl" path="res://scenes/Combat/U.tscn" id="1_qhdlp"]
+[ext_resource type="PackedScene" uid="uid://bk13ac7hjx2nl" path="res://scenes/Combat_rooms/U.tscn" id="1_n844u"]
+[ext_resource type="PackedScene" uid="uid://b48mirkevqaid" path="res://scenes/Combat_rooms/RU.tscn" id="2_a4ahn"]
 [ext_resource type="Texture2D" uid="uid://8ys26e6j6uwi" path="res://Assets/stage_tilemap.png" id="2_aj72o"]
 [ext_resource type="TileSet" uid="uid://dp36hkgjaivf6" path="res://Assets/Room Tileset.tres" id="2_cbalf"]
-[ext_resource type="PackedScene" uid="uid://b48mirkevqaid" path="res://scenes/Combat/RU.tscn" id="2_mifuv"]
-[ext_resource type="PackedScene" uid="uid://cd3xuyl37kc6x" path="res://scenes/Start/U.tscn" id="3_ct3q4"]
-[ext_resource type="PackedScene" uid="uid://bcoreuy8lkfr" path="res://scenes/Combat/UDR.tscn" id="4_xnvwp"]
-[ext_resource type="PackedScene" uid="uid://dwlp1vphcofe4" path="res://scenes/Combat/UD.tscn" id="5_jsn7l"]
-[ext_resource type="PackedScene" uid="uid://bt2irwlb0044o" path="res://scenes/Start/RU.tscn" id="6_k52es"]
-[ext_resource type="PackedScene" uid="uid://0np47joa3rmu" path="res://scenes/Start/UDR.tscn" id="7_22ye6"]
-[ext_resource type="PackedScene" uid="uid://dltm60c41o3wh" path="res://scenes/Start/UD.tscn" id="8_fphnv"]
-[ext_resource type="PackedScene" uid="uid://derjscm1uycdb" path="res://scenes/Combat/R.tscn" id="9_7w1jk"]
-[ext_resource type="PackedScene" uid="uid://diwdtnjrig0ci" path="res://scenes/Combat/DR.tscn" id="10_o6iln"]
-[ext_resource type="PackedScene" uid="uid://d4epc5nk4pr2r" path="res://scenes/Start/R.tscn" id="11_lp2bw"]
-[ext_resource type="PackedScene" uid="uid://bguwfxebn05gv" path="res://scenes/Combat/DRL.tscn" id="12_ibgt1"]
-[ext_resource type="PackedScene" uid="uid://cpa8h1vp7kmew" path="res://scenes/Combat/RL.tscn" id="13_ucqjr"]
-[ext_resource type="PackedScene" uid="uid://b81aoa68muxfn" path="res://scenes/Start/DR.tscn" id="14_3rew8"]
-[ext_resource type="PackedScene" uid="uid://c4e2e2aa12f6e" path="res://scenes/Start/DRL.tscn" id="15_hbjbd"]
-[ext_resource type="PackedScene" uid="uid://bxogiuikpnhca" path="res://scenes/Start/RL.tscn" id="16_gkxds"]
-[ext_resource type="PackedScene" uid="uid://cvscg3oentjf0" path="res://scenes/Combat/D.tscn" id="17_18nqq"]
-[ext_resource type="PackedScene" uid="uid://dh2g6iibla2pu" path="res://scenes/Combat/LD.tscn" id="18_0653y"]
-[ext_resource type="PackedScene" uid="uid://cdd53va7fdyuf" path="res://scenes/Start/D.tscn" id="19_6avk6"]
-[ext_resource type="PackedScene" uid="uid://bc6x1y1qqlpgq" path="res://scenes/Combat/LUD.tscn" id="20_7m2tx"]
-[ext_resource type="PackedScene" uid="uid://bqh18k7b454c" path="res://scenes/Combat/RLUD.tscn" id="21_jfvgb"]
-[ext_resource type="PackedScene" uid="uid://ds5ewlpjfpduy" path="res://scenes/Start/LD.tscn" id="22_fuvkg"]
-[ext_resource type="PackedScene" uid="uid://dw01dmskjv8fn" path="res://scenes/Start/LUD.tscn" id="23_jsbe5"]
-[ext_resource type="PackedScene" uid="uid://dddqxgry0fktg" path="res://scenes/Start/RLUD.tscn" id="24_o8mbq"]
-[ext_resource type="PackedScene" uid="uid://bijex1qa7h4xk" path="res://scenes/Combat/L.tscn" id="25_c16op"]
-[ext_resource type="PackedScene" uid="uid://bbsmuojlwum70" path="res://scenes/Combat/UL.tscn" id="26_0tb4x"]
-[ext_resource type="PackedScene" uid="uid://cvg67u78imywl" path="res://scenes/Start/L.tscn" id="27_36y1n"]
-[ext_resource type="PackedScene" uid="uid://bu7uspbyn70r1" path="res://scenes/Combat/RLU.tscn" id="28_itu4i"]
-[ext_resource type="PackedScene" uid="uid://h4yeqa3iy2co" path="res://scenes/Start/UL.tscn" id="29_1vuri"]
-[ext_resource type="PackedScene" uid="uid://6qyhs4jh4x2y" path="res://scenes/Start/RLU.tscn" id="30_ycvnj"]
+[ext_resource type="PackedScene" uid="uid://bcoreuy8lkfr" path="res://scenes/Combat_rooms/UDR.tscn" id="3_50ufy"]
+[ext_resource type="PackedScene" uid="uid://cd3xuyl37kc6x" path="res://scenes/Start Rooms/U.tscn" id="3_geg0f"]
+[ext_resource type="PackedScene" uid="uid://dwlp1vphcofe4" path="res://scenes/Combat_rooms/UD.tscn" id="4_gmq2a"]
+[ext_resource type="PackedScene" uid="uid://derjscm1uycdb" path="res://scenes/Combat_rooms/R.tscn" id="5_idine"]
+[ext_resource type="PackedScene" uid="uid://diwdtnjrig0ci" path="res://scenes/Combat_rooms/DR.tscn" id="6_inbkj"]
+[ext_resource type="PackedScene" uid="uid://bt2irwlb0044o" path="res://scenes/Start Rooms/RU.tscn" id="6_y8dj7"]
+[ext_resource type="PackedScene" uid="uid://0np47joa3rmu" path="res://scenes/Start Rooms/UDR.tscn" id="7_8xius"]
+[ext_resource type="PackedScene" uid="uid://bguwfxebn05gv" path="res://scenes/Combat_rooms/DRL.tscn" id="7_bb5ho"]
+[ext_resource type="PackedScene" uid="uid://dltm60c41o3wh" path="res://scenes/Start Rooms/UD.tscn" id="8_jk884"]
+[ext_resource type="PackedScene" uid="uid://cpa8h1vp7kmew" path="res://scenes/Combat_rooms/RL.tscn" id="8_pc4uf"]
+[ext_resource type="PackedScene" uid="uid://cvscg3oentjf0" path="res://scenes/Combat_rooms/D.tscn" id="9_ljwff"]
+[ext_resource type="PackedScene" uid="uid://dh2g6iibla2pu" path="res://scenes/Combat_rooms/LD.tscn" id="10_agec3"]
+[ext_resource type="PackedScene" uid="uid://bc6x1y1qqlpgq" path="res://scenes/Combat_rooms/LUD.tscn" id="11_bnnb3"]
+[ext_resource type="PackedScene" uid="uid://d4epc5nk4pr2r" path="res://scenes/Start Rooms/R.tscn" id="11_yawxk"]
+[ext_resource type="PackedScene" uid="uid://bqh18k7b454c" path="res://scenes/Combat_rooms/RLUD.tscn" id="12_kb0mw"]
+[ext_resource type="PackedScene" uid="uid://bijex1qa7h4xk" path="res://scenes/Combat_rooms/L.tscn" id="13_tiofh"]
+[ext_resource type="PackedScene" uid="uid://b81aoa68muxfn" path="res://scenes/Start Rooms/DR.tscn" id="14_pkvqf"]
+[ext_resource type="PackedScene" uid="uid://bbsmuojlwum70" path="res://scenes/Combat_rooms/UL.tscn" id="14_qupxl"]
+[ext_resource type="PackedScene" uid="uid://c4e2e2aa12f6e" path="res://scenes/Start Rooms/DRL.tscn" id="15_rt7ur"]
+[ext_resource type="PackedScene" uid="uid://bu7uspbyn70r1" path="res://scenes/Combat_rooms/RLU.tscn" id="15_ybddx"]
+[ext_resource type="PackedScene" uid="uid://bxogiuikpnhca" path="res://scenes/Start Rooms/RL.tscn" id="16_x5275"]
+[ext_resource type="PackedScene" uid="uid://cdd53va7fdyuf" path="res://scenes/Start Rooms/D.tscn" id="19_1vybd"]
+[ext_resource type="PackedScene" uid="uid://ds5ewlpjfpduy" path="res://scenes/Start Rooms/LD.tscn" id="22_3j3ej"]
+[ext_resource type="PackedScene" uid="uid://dw01dmskjv8fn" path="res://scenes/Start Rooms/LUD.tscn" id="23_4eeeg"]
+[ext_resource type="PackedScene" uid="uid://dddqxgry0fktg" path="res://scenes/Start Rooms/RLUD.tscn" id="24_g8eg0"]
+[ext_resource type="PackedScene" uid="uid://cvg67u78imywl" path="res://scenes/Start Rooms/L.tscn" id="27_i1fqt"]
+[ext_resource type="PackedScene" uid="uid://h4yeqa3iy2co" path="res://scenes/Start Rooms/UL.tscn" id="29_kk16k"]
+[ext_resource type="PackedScene" uid="uid://6qyhs4jh4x2y" path="res://scenes/Start Rooms/RLU.tscn" id="30_yvc3b"]
 
 [sub_resource type="GDScript" id="GDScript_imqrh"]
 script/source = "#_____Header_____
@@ -190,9 +190,7 @@ func place_rooms():
 		room.activated.connect(_on_room_activated)
 		room.deactivated.connect(_on_room_deactivated)
 		for x in room.get_children():
-			if x is Camera2D:
-				camera = x
-				camera.make_current()
+			print(i)
 
 func consolidate_tiles():
 	for room in rooms:
@@ -217,10 +215,8 @@ func _on_room_deactivated(room):
 	active_rooms.erase(room)
 
 func _process(_delta):
-	#move_camera()
-	pass
-
-\"\"\"	
+	move_camera()
+	
 func move_camera():
 	if generated:
 		if active_rooms:
@@ -230,8 +226,8 @@ func move_camera():
 				camera_location.y += i.anchor_pos.y
 			camera_location.x /= active_rooms.size()
 			camera_location.y /= active_rooms.size()
-			camera.set_position(active_rooms[0].anchor_pos)
-\"\"\"
+			print(camera)
+			camera.set_global_position(camera_location)
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eiagf"]
@@ -242,42 +238,42 @@ texture_region_size = Vector2i(3, 3)
 0:0/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 0),
 "Exits": [null, null, null, Vector2i(0, -1)],
-"Room": ExtResource("1_qhdlp"),
+"Room": ExtResource("1_n844u"),
 "Type": "Combat"
 }
 1:0/0 = 0
 1:0/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 0),
 "Exits": [Vector2i(1, 0), null, null, null],
-"Room": ExtResource("9_7w1jk"),
+"Room": ExtResource("5_idine"),
 "Type": "Combat"
 }
 2:0/0 = 0
 2:0/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 0),
 "Exits": [null, null, Vector2i(0, 1), null],
-"Room": ExtResource("17_18nqq"),
+"Room": ExtResource("9_ljwff"),
 "Type": "Combat"
 }
 3:0/0 = 0
 3:0/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 0),
 "Exits": [null, Vector2i(-1, 0), null, null],
-"Room": ExtResource("25_c16op"),
+"Room": ExtResource("13_tiofh"),
 "Type": "Combat"
 }
 3:1/0 = 0
 3:1/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 1),
 "Exits": [null, Vector2i(-1, 0), null, Vector2i(0, -1)],
-"Room": ExtResource("26_0tb4x"),
+"Room": ExtResource("14_qupxl"),
 "Type": "Combat"
 }
 3:2/0 = 0
 3:2/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 2),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, Vector2i(0, -1)],
-"Room": ExtResource("28_itu4i"),
+"Room": ExtResource("15_ybddx"),
 "Type": "Combat"
 }
 3:3/0 = 0
@@ -291,224 +287,224 @@ texture_region_size = Vector2i(3, 3)
 2:3/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 3),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("21_jfvgb"),
+"Room": ExtResource("12_kb0mw"),
 "Type": "Combat"
 }
 1:3/0 = 0
 1:3/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 3),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, null],
-"Room": ExtResource("13_ucqjr"),
+"Room": ExtResource("8_pc4uf"),
 "Type": "Combat"
 }
 0:3/0 = 0
 0:3/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 3),
 "Exits": [null, null, Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("5_jsn7l"),
+"Room": ExtResource("4_gmq2a"),
 "Type": "Combat"
 }
 0:2/0 = 0
 0:2/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 2),
 "Exits": [Vector2i(1, 0), null, Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("4_xnvwp"),
+"Room": ExtResource("3_50ufy"),
 "Type": "Combat"
 }
 0:1/0 = 0
 0:1/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 1),
 "Exits": [Vector2i(1, 0), null, null, Vector2i(0, -1)],
-"Room": ExtResource("2_mifuv"),
+"Room": ExtResource("2_a4ahn"),
 "Type": "Combat"
 }
 1:1/0 = 0
 1:1/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 1),
 "Exits": [Vector2i(1, 0), null, Vector2i(0, 1), null],
-"Room": ExtResource("10_o6iln"),
+"Room": ExtResource("6_inbkj"),
 "Type": "Combat"
 }
 2:1/0 = 0
 2:1/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 1),
 "Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), null],
-"Room": ExtResource("18_0653y"),
+"Room": ExtResource("10_agec3"),
 "Type": "Combat"
 }
 2:2/0 = 0
 2:2/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 2),
 "Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("20_7m2tx"),
+"Room": ExtResource("11_bnnb3"),
 "Type": "Combat"
 }
 1:2/0 = 0
 1:2/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 2),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), null],
-"Room": ExtResource("12_ibgt1"),
+"Room": ExtResource("7_bb5ho"),
 "Type": "Combat"
 }
 0:4/0 = 0
 0:4/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 4),
 "Exits": [null, null, null, Vector2i(0, -1)],
-"Room": ExtResource("3_ct3q4"),
+"Room": ExtResource("3_geg0f"),
 "Type": "Start"
 }
 1:4/0 = 0
 1:4/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 4),
 "Exits": [Vector2i(1, 0), null, null, null],
-"Room": ExtResource("11_lp2bw"),
+"Room": ExtResource("11_yawxk"),
 "Type": "Start"
 }
 2:4/0 = 0
 2:4/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 4),
 "Exits": [null, null, Vector2i(0, 1), null],
-"Room": ExtResource("19_6avk6"),
+"Room": ExtResource("19_1vybd"),
 "Type": "Start"
 }
 3:4/0 = 0
 3:4/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 4),
 "Exits": [null, Vector2i(-1, 0), null, null],
-"Room": ExtResource("27_36y1n"),
+"Room": ExtResource("27_i1fqt"),
 "Type": "Start"
 }
 3:5/0 = 0
 3:5/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 5),
 "Exits": [null, Vector2i(-1, 0), null, Vector2i(0, -1)],
-"Room": ExtResource("29_1vuri"),
+"Room": ExtResource("29_kk16k"),
 "Type": "Start"
 }
 3:6/0 = 0
 3:6/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 6),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, Vector2i(0, -1)],
-"Room": ExtResource("30_ycvnj"),
+"Room": ExtResource("30_yvc3b"),
 "Type": "Start"
 }
 2:6/0 = 0
 2:6/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 6),
 "Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("23_jsbe5"),
+"Room": ExtResource("23_4eeeg"),
 "Type": "Start"
 }
 1:6/0 = 0
 1:6/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 6),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), null],
-"Room": ExtResource("15_hbjbd"),
+"Room": ExtResource("15_rt7ur"),
 "Type": "Start"
 }
 0:6/0 = 0
 0:6/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 6),
 "Exits": [Vector2i(1, 0), null, Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("7_22ye6"),
+"Room": ExtResource("7_8xius"),
 "Type": "Start"
 }
 0:5/0 = 0
 0:5/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 5),
 "Exits": [Vector2i(1, 0), null, null, Vector2i(0, -1)],
-"Room": ExtResource("6_k52es"),
+"Room": ExtResource("6_y8dj7"),
 "Type": "Start"
 }
 1:5/0 = 0
 1:5/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 5),
 "Exits": [Vector2i(1, 0), null, Vector2i(0, 1), null],
-"Room": ExtResource("14_3rew8"),
+"Room": ExtResource("14_pkvqf"),
 "Type": "Start"
 }
 2:5/0 = 0
 2:5/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 5),
 "Exits": [null, Vector2i(-1, 0), Vector2i(0, 1), null],
-"Room": ExtResource("22_fuvkg"),
+"Room": ExtResource("22_3j3ej"),
 "Type": "Start"
 }
 2:7/0 = 0
 2:7/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 7),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("24_o8mbq"),
+"Room": ExtResource("24_g8eg0"),
 "Type": "Start"
 }
 1:7/0 = 0
 1:7/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 7),
 "Exits": [Vector2i(1, 0), Vector2i(-1, 0), null, null],
-"Room": ExtResource("16_gkxds"),
+"Room": ExtResource("16_x5275"),
 "Type": "Start"
 }
 0:7/0 = 0
 0:7/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 7),
 "Exits": [null, null, Vector2i(0, 1), Vector2i(0, -1)],
-"Room": ExtResource("8_fphnv"),
+"Room": ExtResource("8_jk884"),
 "Type": "Start"
 }
 0:8/0 = 0
 0:8/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 8),
 "Exits": [null, null, null, Vector2i(0, -1)],
-"Room": ExtResource("1_qhdlp"),
+"Room": ExtResource("3_geg0f"),
 "Type": "Item"
 }
 1:8/0 = 0
 1:8/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 8),
 "Exits": [Vector2i(1, 0), null, null, null],
-"Room": ExtResource("9_7w1jk"),
+"Room": ExtResource("11_yawxk"),
 "Type": "Item"
 }
 2:8/0 = 0
 2:8/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 8),
 "Exits": [null, null, Vector2i(0, 1), null],
-"Room": ExtResource("17_18nqq"),
+"Room": ExtResource("19_1vybd"),
 "Type": "Item"
 }
 3:8/0 = 0
 3:8/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 8),
 "Exits": [null, Vector2i(-1, 0), null, null],
-"Room": ExtResource("25_c16op"),
+"Room": ExtResource("27_i1fqt"),
 "Type": "Item"
 }
 3:12/0 = 0
 3:12/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(3, 12),
 "Exits": [null, Vector2i(-1, 0), null, null],
-"Room": ExtResource("25_c16op"),
+"Room": ExtResource("27_i1fqt"),
 "Type": "Boss"
 }
 2:12/0 = 0
 2:12/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(2, 12),
 "Exits": [null, null, Vector2i(0, 1), null],
-"Room": ExtResource("17_18nqq"),
+"Room": ExtResource("19_1vybd"),
 "Type": "Boss"
 }
 1:12/0 = 0
 1:12/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(1, 12),
 "Exits": [Vector2i(1, 0), null, null, null],
-"Room": ExtResource("9_7w1jk"),
+"Room": ExtResource("11_yawxk"),
 "Type": "Boss"
 }
 0:12/0 = 0
 0:12/0/custom_data_0 = {
 "Atlas_Coords": Vector2i(0, 12),
 "Exits": [null, null, null, Vector2i(0, -1)],
-"Room": ExtResource("1_qhdlp"),
+"Room": ExtResource("3_geg0f"),
 "Type": "Boss"
 }
 
