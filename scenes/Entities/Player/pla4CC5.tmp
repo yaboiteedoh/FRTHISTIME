@@ -32,6 +32,7 @@ position_smoothing_speed = 7.0
 
 [node name="Wall_checker" type="RayCast2D" parent="."]
 target_position = Vector2(2, 0)
+collide_with_areas = true
 
 [node name="State_Machine" type="Node" parent="."]
 script = ExtResource("3_jveee")
