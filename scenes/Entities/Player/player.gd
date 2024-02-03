@@ -6,6 +6,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var jumps:int
 var max_jumps = 1
 var facing:String
+var dashes:int
+var max_dashes = 1
 @onready var Wall_checker = $Wall_checker
 
 func _physics_process(delta):
@@ -28,9 +30,11 @@ func _physics_process(delta):
 			else:
 				facing = "Neither"
 		else:
-			velocity.x = move_toward(velocity.x, 0, $State_Machine.current_state.speed)
+			velocity.x = 0
 	if Input.is_action_just_pressed("Jump") && jumps:
 		_jump(delta)
+	if Input.is_action_just_pressed("Dash") && dashes && not $State_Machine.current_state.name == "Dash":
+		_dash()
 	move_and_slide()
 	print($State_Machine.current_state.name)
 
@@ -38,3 +42,6 @@ func _jump(delta):
 	jumps -= 1
 	velocity.y = $State_Machine.current_state.jump_strength
 	$State_Machine.current_state.transition.emit("Jumping")
+	
+func _dash():
+	$State_Machine.current_state.transition.emit("Dash")

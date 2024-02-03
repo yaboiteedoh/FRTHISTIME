@@ -67,4 +67,13 @@ speed = 250.0
 wait_time = 0.07
 one_shot = true
 
+[node name="Dash_wall" type="Node" parent="State_Machine"]
+script = ExtResource("7_ktw7c")
+speed = 250.0
+
+[node name="Timer" type="Timer" parent="State_Machine/Dash_wall"]
+wait_time = 0.07
+one_shot = true
+
 [connection signal="timeout" from="State_Machine/Dash/Timer" to="State_Machine/Dash" method="_on_timer_timeout"]
+[connection signal="timeout" from="State_Machine/Dash_wall/Timer" to="State_Machine/Dash_wall" method="_on_timer_timeout"]

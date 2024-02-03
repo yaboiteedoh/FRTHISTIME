@@ -14,3 +14,4 @@ func _physics_process(_delta):
 
 func _on_enter():
 	get_parent().get_parent().jumps = get_parent().get_parent().max_jumps
+	get_parent().get_parent().dashes = get_parent().get_parent().max_dashes
