@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhqg4o7q3v8dw"]
+
+[ext_resource type="Script" path="res://scenes/Entities/Player/player.gd" id="1_sdyki"]
+[ext_resource type="Texture2D" uid="uid://bqh7dxvl7xoa6" path="res://Assets/Sprite-0001.png" id="2_v8ldt"]
+[ext_resource type="Script" path="res://scenes/Entities/Player/Player_State_Machine.gd" id="3_jveee"]
+[ext_resource type="Script" path="res://scenes/Entities/Player/Grounded.gd" id="4_g735t"]
+[ext_resource type="Script" path="res://scenes/Entities/Player/Air.gd" id="5_3sn4e"]
+[ext_resource type="Script" path="res://scenes/Entities/Player/Jumping.gd" id="6_wea6t"]
+[ext_resource type="Script" path="res://scenes/Entities/Player/Wall Cling.gd" id="6_whdtf"]
+[ext_resource type="Script" path="res://scenes/Entities/Player/Dash.gd" id="7_ktw7c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_er1u6"]
+radius = 1.8
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_sdyki")
+
+[node name="Player_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_v8ldt")
+
+[node name="Player_shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_er1u6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="Wall_checker" type="RayCast2D" parent="."]
+target_position = Vector2(2, 0)
+
+[node name="State_Machine" type="Node" parent="."]
+script = ExtResource("3_jveee")
+
+[node name="Grounded" type="Node" parent="State_Machine"]
+script = ExtResource("4_g735t")
+speed = 30.0
+can_move = true
+jump_strength = -70.0
+
+[node name="Air_State" type="Node" parent="State_Machine"]
+script = ExtResource("5_3sn4e")
+speed = 20.0
+can_move = true
+jump_strength = -70.0
+
+[node name="Jumping" type="Node" parent="State_Machine"]
+script = ExtResource("6_wea6t")
+speed = 30.0
+can_move = true
+jump_strength = -70.0
+
+[node name="Wall Cling" type="Node" parent="State_Machine"]
+script = ExtResource("6_whdtf")
+can_move = true
+jump_strength = -70.0
+
+[node name="Dash" type="Node" parent="State_Machine"]
+script = ExtResource("7_ktw7c")
+speed = 250.0
+
+[node name="Timer" type="Timer" parent="State_Machine/Dash"]
+wait_time = 0.07
+one_shot = true
+
+[connection signal="timeout" from="State_Machine/Dash/Timer" to="State_Machine/Dash" method="_on_timer_timeout"]
