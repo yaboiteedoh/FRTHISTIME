@@ -17,4 +17,5 @@ func _transition(new_state:String):
 	var next_state = states[new_state]
 	current_state._on_exit()
 	current_state = next_state
+	print(new_state)
 	next_state._on_enter()

@@ -36,7 +36,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Dash") && dashes && not $State_Machine.current_state.name == "Dash":
 		_dash()
 	move_and_slide()
-	print($State_Machine.current_state.name)
 
 func _jump(delta):
 	jumps -= 1
